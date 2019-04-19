@@ -29,7 +29,7 @@ a:focus {
 
 ul { 
 	padding: 0;
-	margin: 0; 
+	margin-left: 20px; 
 }
 
 p {  line-height: 2; }
@@ -39,6 +39,8 @@ body {
 	color: #000;
 	/*font-family: 'Open Sans', Helvetica, Arial, sans-serif;*/
     font-family: 'Gill Sans', sans-serif;
+    /*font-family: 'Palatino', serif;*/
+    /*font-family: "Apple Chancery", cursive;*/
 	font-size: 18px;
 	font-weight: 300;
 	padding-top: 10px;
@@ -66,7 +68,9 @@ body {
 
 .tm-welcome-box { 
 	max-width: 400px;
-	margin-top: 30px;
+	margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
 	width: 100%;
     border: 3px solid #b9e1ff;
 }
@@ -93,6 +97,7 @@ body {
 
 .tm-purple-bg .tm-section-title { color: white; }
 .tm-gray-bg { background-color: #F4F4F4; }
+.tm-paleblue-bg{ background-color: #fff; border: 3px solid #b9e1ff; }
 .tm-blue-text { color: #3C89D6; }
 .tm-red-text { color: #D66363; }
 .tm-box-pad { padding: 45px 40px; }
@@ -162,7 +167,7 @@ body {
 }
 
 .tm-nav-item-link {	
-	padding: 30px;
+	padding: 10px;
 	width: 100%;	
 }
 
@@ -170,6 +175,7 @@ body {
 
 .tm-button,
 .tm-button:focus {
+    /*font-family: "Apple Chancery", cursive;*/
 	background-color: #fff;
 	border: none;
 	border-radius: 0;
@@ -182,7 +188,7 @@ body {
 .tm-button:hover,
 .tm-button.active {
 	background-color: #fff;
-	color: #0066CC;
+	color: #0d3298;
 	text-decoration: none;
 }
 
@@ -192,8 +198,28 @@ body {
 	padding: 15px 50px;    
 }
 
+.tm-button-new,
+.tm-button-new:focus {
+    font-family: "Apple Chancery", cursive;
+	background-color: #deeefb;
+	border: none;
+	border-radius: 0;
+	color: #0d3298;
+	display: block;
+	-webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+.tm-button-new:hover,
+.tm-button.active {
+	background-color: #fff;
+	color: #0066CC;
+	text-decoration: none;
+}
+
 .tm-section-title {
 	color: #0d3298;
+    font-family: "Apple Chancery", cursive;
     text-shadow: 2px 2px #fff;
 	font-weight: 1000;
 	margin-top: 0;
@@ -302,7 +328,7 @@ body {
 }
 
 .tm-content-box-home { 
-	position: relative; 
+	position: relative;
 	margin-bottom: 63px;
 }
 
@@ -500,7 +526,7 @@ figure.effect-bubba:hover p {
 		-webkit-align-items: stretch;
 	    	-ms-flex-align: stretch;
 	        	align-items: stretch;
-		position: absolute;
+		position: relative;
 	    bottom: -63px;
 	    left: 0;
 	    right: 0;
@@ -529,7 +555,7 @@ figure.effect-bubba:hover p {
 	.tm-box-pad { padding: 45px 40px; }
 	.tm-services-img { width: 300px; }	
 	.tm-services { overflow: auto; }
-	.tm-services-img-container { float: left; }
+	.tm-services-img-container { float: left; margin-left: 10px; margin-top: 50px; margin-bottom: 50px;}
 	.tm-services-description-container { margin-left: 300px; }
 
 	.grid figure {
