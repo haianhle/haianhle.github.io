@@ -75,17 +75,20 @@
                     thanks to the highly optimized implementation of 2D convolution on GPUs. The network took 5-6 days to be trained on 
                     2 GTX 580 3GB GPUs, and the authors believed that improvement is possible with simply faster GPUs and bigger
                     datasets. At the time, the model was parallelized such that the GPUs communicate only in certain layers, which
-                    consequently lowered their error rates by 1-2%.
+                    consequently lowered their error rates by 1–2%.
+                    ReLU (instead of \(tanh\)) activation function was used to speed up learning.
                     Dropout regularization was used to reduce overfitting in the fully connected layers.
                     Data augmentation was used to artificially increase the size of the dataset and as a result reduce overfitting.
-                    This was done via either image translations and horizontal reflections, or 
-                    The former extracts random patches and their horizontal reflections from the resized images, while the latter
-                    alters the intensities of the RGB channels in training images.
+                    This was done either through image translations and horizontal reflections by
+                    extracting random patches and their horizontal reflections from the resized images, 
+                    or through altering the intensities of the RGB channels in training images.
 
                     The paper reported results, including top-1 and top-5 error rates, on the ILSVRC-2010 dataset.
+                    </p>
                     </br>
-                    </br>
-                    The images are resized to be \(256 \times 256\), non-squared images are cropped first.
+                    <h4> The model</h4>
+                    <p align="justify">
+                    The images from the dataset are resized to be \(256 \times 256\), non-squared images are cropped first.
                     The RGB values for each pixels are normalized using the mean of the training set.
                     </br>
                     </br>
@@ -93,7 +96,30 @@
                     prettier one when I have time). 
                     </p>
                     <img src="alexnet-fig1.png"></img>
+                    </br>
+                    
+                    <p align="justify">
+                    As mentioned previously, data augmentation was used to artificially enlarge the size
+                    of the data set. One form of data augmentation used in the model was done by extracting
+                    random \(224\times 224\times 3\) patches from the \(256\times 256\) images. 
+                    These patches then go through 
+                    </p>
+                    <ul align="justify">
+                        <li>The first convolutional layer: 96 kernels (or filters)
+                        of size \(11\times 11\times 3\) and a stride of 4 pixels, followed by a max pooling layer.</li>
+                        <li>The second convolutional layer: 256 filters of size 
+                        \(5\times 5\times 48\), followed again by a max pooling layer.</li>
+                        <li>The third convolutional layer: 384 filters of size \(3\times 3\times 256\)</li>
+                        <li>The fourth convolutional layer: 384 filters of size \(3\times 3\times 192\)</li>
+                        <li>The fourth convolutional layer: 256 filters of size \(3\times 3\times 192\)</li>
+                    </ul>
+                    <p align="justify">
+                    The fully connected layers have 4096 neurons each.
+                    ....
+                    <h4>Results</h4>
+                    <h4>Beyond the paper</h4>
                     <i>(to be continued)</i>
+                    </p>
                 </div>
             </div>
         </div>
