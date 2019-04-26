@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>AR::Data Science</title>
+    <title>AR::AlexNet</title>
 <!--
 -->
     <!-- load stylesheets -->
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/ar-style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/ar-style.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,7 +26,7 @@
     <div class="container-fluid">
         <section id="welcome" class="tm-content-box tm-banner margin-b-10">
             <div class="tm-banner-inner">
-                <h1 class="tm-banner-title"><a href="index.html" style="text-decoration: None; color:#0d3298"> Anh H. Reynolds</a></h1>
+                <h1 class="tm-banner-title"><a href="../index.html" style="text-decoration: None; color:#0d3298"> Anh H. Reynolds</a></h1>
             </div>                    
         </section>
         <!--
@@ -38,19 +38,19 @@
             <div class="tm-sidebar">
                 <nav class="tm-main-nav">
                     <ul class="tm-main-nav-ul">
-                        <li class="tm-nav-item"><a href="datascience.html" class="tm-nav-item-link tm-button">
+                        <li class="tm-nav-item"><a href="../datascience.html" class="tm-nav-item-link tm-button">
                             <i class="fa tm-nav-fa"></i>Data Science</a>
                         </li>
-                        <li class="tm-nav-item"><a href="404.html" class="tm-nav-item-link tm-button">
+                        <li class="tm-nav-item"><a href="../404.html" class="tm-nav-item-link tm-button">
                             <i class="fa tm-nav-fa"></i>Quantum Chemistry</a>
                         </li>
-                        <li class="tm-nav-item"><a href="index.html" class="tm-nav-item-link tm-button">
+                        <li class="tm-nav-item"><a href="../index.html" class="tm-nav-item-link tm-button">
                             <i class="fa tm-nav-fa"></i>About me</a>
                         </li>
                         <li class="tm-nav-item"><a href="cv.html" class="tm-nav-item-link tm-button">
                             <i class="fa tm-nav-fa"></i>Curriculum Vitae</a>
                         </li>
-                        <li class="tm-nav-item"><a href="others.html" class="tm-nav-item-link tm-button">
+                        <li class="tm-nav-item"><a href="../others.html" class="tm-nav-item-link tm-button">
                             <i class="fa tm-nav-fa"></i>Other interests</a>
                         </li>
                     </ul>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="tm-main-content">
-                <div class="tm-content-box tm-content-box-home" style="color:#000">
+                <div class="tm-content-box tm-content-box-home">                        
                     <h2>Large-scale image recognition: AlexNet</h2>
                     <p align="justify">
                     Source:
@@ -71,18 +71,29 @@
                     <a href=http://www.image-net.org/challenges/LSVRC/>ILSVRC</a>
                     (ImageNet Large Scale Visual Recognition Competition), the Blackpool for image classification, in 2012,
                     consisting of 5 convolutional layers, 3 fully connected layers, and a final 1000-way softmax with 60 million
-                    parameters.
-                    <a href="blogs/alexnet.html">Read more...</a>
-                    <h2>Large-scale image recognition: VGG</h2>
-                    Source: <a href=https://arxiv.org/abs/1409.1556>original paper</a>.
-                    by Karen Simonyan and Andrew Zisserman (2015)
+                    parameters. The scale of this network was considered very impressive at the time, and was in part possible
+                    thanks to the highly optimized implementation of 2D convolution on GPUs. The network took 5-6 days to be trained on 
+                    2 GTX 580 3GB GPUs, and the authors believed that improvement is possible with simply faster GPUs and bigger
+                    datasets. At the time, the model was parallelized such that the GPUs communicate only in certain layers, which
+                    consequently lowered their error rates by 1-2%.
+                    Dropout regularization was used to reduce overfitting in the fully connected layers.
+                    Data augmentation was used to artificially increase the size of the dataset and as a result reduce overfitting.
+                    This was done via either image translations and horizontal reflections, or 
+                    The former extracts random patches and their horizontal reflections from the resized images, while the latter
+                    alters the intensities of the RGB channels in training images.
+
+                    The paper reported results, including top-1 and top-5 error rates, on the ILSVRC-2010 dataset.
                     </br>
                     </br>
-                    VGG stands for Visual Geometry Group, a research group in the Department of Engineering Science at the University
-                    of Oxford, and refers to the deep convolutional network (ConvNet) models either with 16 layers (VGG-16) 
-                    or 19 layers (VGG-19).
-                    <a href="blogs/vgg.html">Read more...</a>
+                    The images are resized to be \(256 \times 256\), non-squared images are cropped first.
+                    The RGB values for each pixels are normalized using the mean of the training set.
+                    </br>
+                    </br>
+                    The architechture of the model is shown below (the figure is taken from the original paper, but I will make a
+                    prettier one when I have time). 
                     </p>
+                    <img src="alexnet-fig1.png"></img>
+                    <i>(to be continued)</i>
                 </div>
             </div>
         </div>
@@ -104,6 +115,7 @@
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
     
     <!-- Templatemo scripts -->
     <script>  

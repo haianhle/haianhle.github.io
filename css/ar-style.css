@@ -41,7 +41,8 @@ body {
     font-family: 'Gill Sans', sans-serif;
     /*font-family: 'Palatino', serif;*/
     /*font-family: "Apple Chancery", cursive;*/
-	font-size: 18px;
+    /*font-family: 'Computer Modern Sans', sans-serif;*/
+	font-size: 20px;
 	font-weight: 300;
 	padding-top: 10px;
 	overflow-x: hidden;
@@ -176,6 +177,7 @@ body {
 .tm-button,
 .tm-button:focus {
     /*font-family: "Apple Chancery", cursive;*/
+	font-size: 20px;
 	background-color: #fff;
 	border: none;
 	border-radius: 0;
