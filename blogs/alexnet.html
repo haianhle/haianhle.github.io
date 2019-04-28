@@ -67,12 +67,14 @@
                     by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton (2012)
                     </br>
                     </br>
-                    AlexNet refers to an eight-layer convolutional neural network (CNN) that was the winner of the 
+                    AlexNet refers to an eight-layer convolutional neural network (ConvNet) that was the winner of the 
                     <a href=http://www.image-net.org/challenges/LSVRC/>ILSVRC</a>
                     (ImageNet Large Scale Visual Recognition Competition), the Blackpool for image classification, in 2012,
-                    consisting of 5 convolutional layers, 3 fully connected layers, and a final 1000-way softmax with 60 million
-                    parameters. The scale of this network was considered very impressive at the time, and was in part possible
-                    thanks to the highly optimized implementation of 2D convolution on GPUs. The network took 5-6 days to be trained on 
+                    consisting of 5 convolutional layers, 3 fully connected layers with a final 1000-way softmax,
+                    amounting to a total of 60 million parameters.
+                    The scale of this network was considered very impressive at the time, and was in part possible
+                    thanks to the highly optimized implementation of 2D convolution on GPUs. 
+                    The network took 5-6 days to be trained on 
                     2 GTX 580 3GB GPUs, and the authors believed that improvement is possible with simply faster GPUs and bigger
                     datasets. At the time, the model was parallelized such that the GPUs communicate only in certain layers, which
                     consequently lowered their error rates by 1–2%.
@@ -102,16 +104,34 @@
                     As mentioned previously, data augmentation was used to artificially enlarge the size
                     of the data set. One form of data augmentation used in the model was done by extracting
                     random \(224\times 224\times 3\) patches from the \(256\times 256\) images. 
-                    These patches then go through 
-                    </p>
+                    These patches then go through 5 convolutional layers and 3 fully connected layers.
+                    There might have been a mistake here in the paper and the patch's dimensions are 
+                    supposed to be \(227\times 227\times 3\).
                     <ul align="justify">
-                        <li>The first convolutional layer: 96 kernels (or filters)
-                        of size \(11\times 11\times 3\) and a stride of 4 pixels, followed by a max pooling layer.</li>
-                        <li>The second convolutional layer: 256 kernels of size 
-                        \(5\times 5\times 48\), followed again by a max pooling layer.</li>
-                        <li>The third convolutional layer: 384 kernels of size \(3\times 3\times 256\)</li>
-                        <li>The fourth convolutional layer: 384 kernels of size \(3\times 3\times 192\)</li>
-                        <li>The fourth convolutional layer: 256 kernels of size \(3\times 3\times 192\)</li>
+                        <li><p>1st convolutional layer: 96 kernels
+                        of size \(11\times 11\times 3\) and a stride of 4 pixels, followed by
+                        a max pooling layer of size \(3\times 3\) and a stride of 2.
+                        Dimensions of the output are \(55\times 55\times 96\) after Conv 1,
+                        and \(27\times 27\times 96\) after Pool 1.
+                        </li></p>
+                        <li>2nd convolutional layer: 256 kernels of size 
+                        \(5\times 5\times 48\) and a stride of 1, followed by a max pooling layer
+                        of size \(3\times 3\) and a stride of 2.
+                        Dimensions of the output are \(51\times 51\times 256\) after Conv 2, and
+                        \(11\times 11\times 256\) after Pool 2.
+                        </li></p>
+                        <li>3rd convolutional layer: 384 kernels of size \(3\times 3\times 256\), and 
+                        a stride of 1, no pooling.
+                        Dimensions of the output are \(9\times 9\times 384\) after Conv 3.
+                        </li></p>
+                        <li>4th convolutional layer: 384 kernels of size \(3\times 3\times 192\),
+                        and a stride of 1, no pooling.
+                        Dimensions of the output are \(7\times 7\times 384\) after Conv 4.
+                        </li></p>
+                        <li>5th convolutional layer: 256 kernels of size \(3\times 3\times 192\),
+                        and a stride of 1, again no pooling.
+                        Dimensions of the output are \(5\times 5\times 256\) after Conv 5.
+                        </li></p>
                     </ul>
                     <p align="justify">
                     The fully connected layers have 4096 neurons each.
