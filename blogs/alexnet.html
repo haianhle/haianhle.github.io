@@ -74,7 +74,7 @@
                     amounting to a total of 60 million parameters.
                     The scale of this network was considered very impressive at the time, and was in part possible
                     thanks to the highly optimized implementation of 2D convolution on GPUs. 
-                    The network took 5-6 days to be trained on 
+                    The network took 5-6 days to be trained on 1.2 million images using
                     2 GTX 580 3GB GPUs, and the authors believed that improvement is possible with simply faster GPUs and bigger
                     datasets. At the time, the model was parallelized such that the GPUs communicate only in certain layers, which
                     consequently lowered their error rates by 1–2%.
@@ -85,7 +85,8 @@
                     extracting random patches and their horizontal reflections from the resized images, 
                     or through altering the intensities of the RGB channels in training images.
 
-                    The paper reported results, including top-1 and top-5 error rates, on the ILSVRC-2010 dataset.
+                    The paper reported results, including top-1 and top-5 error rates, on the ILSVRC-2010 
+                    and ILSVRC-2012 dataset.
                     </p>
                     </br>
                     <h4> The model</h4>
@@ -97,16 +98,15 @@
                     The architechture of the model is shown below (the figure is taken from the original paper, but I will make a
                     prettier one when I have time). 
                     </p>
-                    <img src="alexnet-fig1.png"></img>
+                    <center><img src="alexnet-fig1.png" width="100%" class="center"></img></center> 
                     </br>
-                    
                     <p align="justify">
                     As mentioned previously, data augmentation was used to artificially enlarge the size
                     of the data set. One form of data augmentation used in the model was done by extracting
                     random \(224\times 224\times 3\) patches from the \(256\times 256\) images. 
                     These patches then go through 5 convolutional layers and 3 fully connected layers.
-                    There might have been a mistake here in the paper and the patch's dimensions are 
-                    supposed to be \(227\times 227\times 3\).
+                    Notice that there is likely a mistake here in the paper and the patches' dimensions 
+                    should be \(227\times 227\times 3\), as pointed out by Andrew Ng and others.
                     <ul align="justify">
                         <li><p>1st convolutional layer: 96 kernels
                         of size \(11\times 11\times 3\) and a stride of 4 pixels, followed by
@@ -114,31 +114,63 @@
                         Dimensions of the output are \(55\times 55\times 96\) after Conv 1,
                         and \(27\times 27\times 96\) after Pool 1.
                         </li></p>
-                        <li>2nd convolutional layer: 256 kernels of size 
-                        \(5\times 5\times 48\) and a stride of 1, followed by a max pooling layer
+                        <li><p>2nd convolutional layer: same convolution with 256 kernels of size 
+                        \(5\times 5\times 96\) and a stride of 1, followed by a max pooling layer
                         of size \(3\times 3\) and a stride of 2.
-                        Dimensions of the output are \(51\times 51\times 256\) after Conv 2, and
-                        \(11\times 11\times 256\) after Pool 2.
+                        Dimensions of the output are \(27\times 27\times 256\) after Conv 2 (\(p=2)\),
+                        and \(13\times 13\times 256\) after Pool 2.
                         </li></p>
-                        <li>3rd convolutional layer: 384 kernels of size \(3\times 3\times 256\), and 
-                        a stride of 1, no pooling.
-                        Dimensions of the output are \(9\times 9\times 384\) after Conv 3.
+                        <li><p>3rd convolutional layer: same convolution with 384 kernels of size 
+                        \(3\times 3\times 256\), and  a stride of 1, no pooling.
+                        Dimensions of the output are \(13\times 13\times 384\) after Conv 3 (\(p=1)\).
                         </li></p>
-                        <li>4th convolutional layer: 384 kernels of size \(3\times 3\times 192\),
-                        and a stride of 1, no pooling.
-                        Dimensions of the output are \(7\times 7\times 384\) after Conv 4.
+                        <li><p>4th convolutional layer: same convolution again with 384 kernels 
+                        of size \(3\times 3\times 384\), and a stride of 1, no pooling.
+                        Dimensions of the output are \(13\times 13\times 384\) after Conv 4 (\(p=1)\).
                         </li></p>
-                        <li>5th convolutional layer: 256 kernels of size \(3\times 3\times 192\),
-                        and a stride of 1, again no pooling.
-                        Dimensions of the output are \(5\times 5\times 256\) after Conv 5.
+                        <li><p>5th convolutional layer: same convolution again with 256 kernels 
+                        of size \(3\times 3\times 384\) and a stride of 1, followed by
+                        a max pooling layer of size \(3\times 3\) and a stride of 2.
+                        Dimensions of the output are \(13\times 13\times 256\) after Conv 5 (\(p=1)\),
+                        and \(6\times 6\times 256\) after Pool 5.
                         </li></p>
+                        <li><p> 6th and 7th layers are fully connected layers, each has 4096 neurons
+                        </li></p>
+                        <li><p> 8th and also last layer is a 1000-way softmax.  </li></p>
                     </ul>
                     <p align="justify">
-                    The fully connected layers have 4096 neurons each.
-                    ....
-                    <h4>Results</h4>
-                    <h4>Beyond the paper</h4>
-                    <i>(to be continued)</i>
+                    Andrew Ng had an easier diagram to follow than the original paper, as shown below.
+                    </p>
+                    </br>
+                    <center><img src="alexnet.png" width="100%" class="center"></img></center> 
+                    </br>
+                    <p align="justify">
+                    The activation shapes and sizes as well as the number of parameters for each layer
+                    are tabulated below. The total number of parameters is calculated to be 62,369,155.
+                    </p>
+                    </br>
+                    <center><img src="alexnet-parameters.png" width="75%" class="center"></img></center> 
+                    </br>
+                    <p align="justify">
+                    The model was trained using stochastic gradient descent with momentum on 
+                    mini-batches size 128 examples. The values for momentum used was 0.9 and
+                    a weight decay of 0.0005.
+                    $$ v_{i+1} := 0.9v_i - 0.0005\times\epsilon\times w_i
+                                         - \epsilon\times\langle\frac{\partial L}{\partial w}|_{w_i}\rangle_{D_i}$$
+                    $$ w_{i+1} := w_i + v_{i+1}$$
+                    where \(i\) is the iteration index, \(v\) is the momentum variable,
+                    \(\epsilon\) is the learning rate, which is the same for all layers and was
+                    adjusted manually throughout training based on how the validation error improved,
+                    starting at 0.01.
+                    The weights \(w\) were initialized from a zero-mean Gaussian distribution
+                    with standard deviation 0.01.
+                    \(\langle\frac{\partial L}{\partial w}|_{w_i}\rangle_{D_i}\) is the
+                    average over the \(i\)th batch \(D_i\) of the derivative of the objective
+                    with respect to \(w\) evaluated at \(w_i\).
+                    The biases were initialized to 1 in the 2nd, 4th, and 5th convolutional layers as well
+                    as the fully connected layers in order to accelerate the early stages
+                    of learning by providing the ReLUs with positive inputs. 
+                    The biases in other layers were initialized to 0.
                     </p>
                 </div>
             </div>

@@ -151,7 +151,7 @@
                     $$\left(\frac{n+2p–f}{s}+1\right)\times \left(\frac{n+2p–f}{s}+1\right)\times n_C'$$
                     </p></li>
                     <li><p align="justify">the number of parameters to be learned in each convolutional layer is
-                    \((f\times f+1)\times n_C\), which is independent of the size of the input image.
+                    \((f\times f\times n_C'+1)\times n_C\), which is independent of the size of the input image.
                     This helps solve the two problems mentioned at the very beginning of this post.
                     Note that \(f, n_C, n_C', p, s\) are all hyperparameters and are not trained in the network,
                     that is, must be tuned outside of the network.
