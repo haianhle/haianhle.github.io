@@ -275,7 +275,7 @@ body {
     text-shadow: 3px 3px #fff;
     font-family: 'Gill Sans', sans-serif;
 	/*text-transform: lowercase;*/
-    text-align: right;
+    text-align: center;
 }
 
 .tm-services-description-container > * { width: 100%; }
