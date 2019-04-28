@@ -67,17 +67,18 @@
                     The motivation arises from the fact that a fully connected network grows quickly
                     with the size of an image, which consequently requires an enormous dataset 
                     to avoid overfitting (besides the prohibitive computational cost).
-                    </br>
-                    Convolutional neural networks (CNNs), as the name implies, has to do with the convolution 
-                    between a kernel and an image in each convolutional layer. 
-                    A kernel or a filter refers to a small matrix, and the
+                    Convolutional neural networks, as the name implies, has to do with the convolution 
+                    between a kernel (or a filter) and an image in each convolutional layer. 
+                    A filter refers to a small matrix, and the
                     convolution operator (denoted as \(*\), sometimes called cross-correlation) gives rise 
                     to a new image where each element is a weighted combination of the entries of a
-                    patch of the original image, with weights given by the filter.
+                    region or patch of the original image, with weights given by the filter. 
+                    A convolutional neural network or ConvNet typically consists of some convolutional layers,
+                    some pooling layers, and some fully connected layers.
                     </p>
                     </br>
                     <h4>Edge detection</h4>
-                    Edge detection is an example of the usefulness of the convolution operation in
+                    Edge detection is an example of the usefulness of convolution in
                     identifying the regions in an image where there is a sharp change in colors or intesntiy.
                     <p align="justify">
                     </p>
@@ -120,16 +121,131 @@
                     going to shrink after each convolutional layer.
                     In addition, because the edge of the 
                     original image is not used in the convolution operation as often as the central pixels,
-                    some valuable information is potential lost in the process.
+                    some valuable information is potentially lost in the process.
                     </br>
-                    The solution to these problems is through padding the border of the original image with a
-                    \(p\) extra layers of zeros. When \(p=0\), that is, no padding, this is called "valid" convolution.
+                    The solution to these problems is through padding the border of the original image with
+                    \(p\) extra layer(s) of zeros in every direction. The dimensions of the input and output 
+                    images become \((n+2p)\times (n+2p)\) and \((n+2p–f+1)\times(n+2p–f+1)\) respectively.
+                    When \(p=0\), that is, no padding, this is called "valid" convolution.
                     When \(p = (f–1)/2\) so that the sizes of the input and output images are the same, this is called
                     "same" convolution.
                     </p>
                     <center><img src="padding.png" width="100%" class="center"></img></center>
+                    <p align="center">An example of same convolution with padding \(p=1\)</p>
+                    <h4>Convolutional layer</h4>
+                    <ul>
+                    <li><p align="justify">the convolution operator can be applied to the original image with a stride
+                    \(s\) other than 1, resulting in fewer operations and output image of smaller size.
+                    $$\left(\frac{n+2p–f}{s}+1\right)\times \left(\frac{n+2p–f}{s}+1\right)$$
+                    </p></li>
+                    <li><p align="justify">the numbers of channels must be the same for the input image and the filter.
+                    See example below for an image with 3 channels (RGB) of dimensions \(6\times 6\times 3\).
+                    The filter has dimensions \(3\times 3\times 3\), where the last \(3\) is the number
+                    of channels. The resulting image has dimension \(4\times 4\), 
+                    assuming \(s=1\) and \(p=0\).</p></li>
+                    <center><img src="3D-conv.png" width="70%" class="center"></img></center>
+                    <li><p align="justify">multiple filters can be applied to each image. Given an input image of dimensions
+                    \(n\times n\times n_C\) and \(n_C'\) filters of dimensions \(f\times f\times n_C\)
+                    with stride \(s\) and padding \(p\),
+                    the dimensions of the resulting output is
+                    $$\left(\frac{n+2p–f}{s}+1\right)\times \left(\frac{n+2p–f}{s}+1\right)\times n_C'$$
+                    </p></li>
+                    <li><p align="justify">the number of parameters to be learned in each convolutional layer is
+                    \((f\times f+1)\times n_C\), which is independent of the size of the input image.
+                    This helps solve the two problems mentioned at the very beginning of this post.
+                    Note that \(f, n_C, n_C', p, s\) are all hyperparameters and are not trained in the network,
+                    that is, must be tuned outside of the network.
+                    </p></li>
+                    </ul>
                     </br>
-                    <i>(to be continued)</i>
+                    <h5>Notation</h5>
+                    <p align="justify">
+                    For layer \(l\), the filter size, padding, stride are denoted
+                    as \(f^{[l]}, p^{[l]}, s^{[l]}\) respectively.
+                    </br>
+                    The dimensions of the input image:
+                    \(n_H^{[l–1]}\times n_W^{[l–1]}\times n_C^{[l–1]}\)
+                    </br>
+                    Dimensions of the output image:
+                    \(n_H^{[l]}\times n_W^{[l]}\times n_C^{[l]}\)
+                    </br>
+                    where
+                    $$n_H^{[l]} = \frac{n_H^{[l-1]}+2p^{[l]}-f^{[l]}}{s^{[l]}}+1$$
+                    $$n_W^{[l]} = \frac{n_W^{[l-1]}+2p^{[l]}-f^{[l]}}{s^{[l]}}+1$$
+                    and \(n_C^{[l]}\) is the number of filters used in layer \(l\).
+                    </br>
+                    Size of each filter: \(f^{[l]}\times f^{[l]}\times n_C^{[l–1]}\)
+                    </br>
+                    (because the number of channels of the filter must match that of the input image)
+                    </br>
+                    Each weight tensor has the same size as a the filter. Since there are
+                    \(n_C\) filters, dimensions of the weight tensor \(w^{[l]}\) in layer \(l\) is
+                    \(f^{[l]}\times f^{[l]}\times n_C^{[l–1]}\times n_C^{[l]}\),
+                    and the bias vector has dimensions \(1\times 1\times 1\times n_C\).
+                    The activation function \(a^{[l]}\) applies nonlinearity on all
+                    the output images, and as a result has dimensions
+                    \(m\times n_H^{[l]}\times n_W^{[l]}\times n_C^{[l]}\) where
+                    \(m\) is the number of images, that is, the number of training examples.
+                    </p>
+                    </br>
+                    <h4>Pooling layer</h4>
+                    <p align="justify">
+                    The motivation behind pooling layers is to reduce the size of the representation,
+                    keeping only the more important features. Pooling layers have been found to work very
+                    well, but the underlying reasons for that are not fully understood. 
+                    The most common type of pooling layers used is Max Pooling; the less common 
+                    Average Pooling is sometimes seen in very deep neural networks.
+                    </br>
+                    </p>
+                    <center><img src="max-pooling.png" width="50%" class="center"></img></center>
+                    </br>
+                    <p align="justify">
+                    Pooling is applied very similarly to the convolution operator by sliding 
+                    a small matrix of size \(f\times f\) across the input image with stride \(s\).
+                    There is almost always no padding, \(p=0\). The Max Pooling operation involves
+                    taking the max value, while the Average Pooling, the average. An example is shown
+                    for \(f=2\) and \(s=2\) applied on a \(4\times 4\) matrix \((n=4)\). Unlike convolution,
+                    pooling is applied to each channel individually, as a result, the number of channels is
+                    preserved. The dimensions of the output given input dimensions 
+                    \(n_H\times n_W\times n_C\) are 
+                    $$\left(\frac{n_H-f}{s}+1\right)\times \left(\frac{n_W-f}{s}+1\right)\times n_C$$
+                    Since there is no parameter to be learned in a pooling layer, it is often not
+                    counted in the number of total layers in a ConvNet.
+                    </p>
+                    </br>
+                    <h4>Example of a ConvNet</h4>
+                    <p align="justify">
+                    This simple network that is very similar to <a href="http://yann.lecun.com/exdb/lenet/">
+                    LeNet-5</a> is an example given by Andrew Ng
+                    in Course 4 of the <a href="https://www.coursera.org/specializations/deep-learning#courses">
+                    Deep Learning Specialization</a> on Coursera. 
+                    A ConvNet usually consists
+                    of a few convolutional layers (each is often followed by a max pooling layer), and
+                    a few fully connected layers.
+                    </p>
+                    </br>
+                    <center><img src="lenet-5.png" width="100%" class="center"></img></center> 
+                    </br>
+                    <p align="justify">
+                    Generally, we can see that \(n_H, n_W\downarrow\) while \(n_C\uparrow\).
+                    The size of the activations should gradually decrease.
+                    Most of the parameters to be learned in a ConvNet are in the last few fully connected
+                    layers as seen in the table below.
+                    </p>
+                    </br>
+                    <center><img src="lenet-5-parameters.png" width="80%" class="center"></img></center> 
+                    </br>
+                    <h4>Why ConvNet?</h4>
+                    2 main advantages of using a ConvNet in computer vision applications are
+                    <ul>
+                    <li><p align="justify">parameter sharing: a feature detector such as vertical
+                    edge detector that is useful in one part of the image is probably be useful in
+                    another part of the image. This is often true for both low level features
+                    and high level features.</p></li>
+                    <li><p align="justify">sparsity of connection: the output unit depends only on a small
+                    number of input units. As a result, a ConvNet is more robust and less prone
+                    to overfitting. </p></li>
+                    </ul>
                 </div>
             </div>
         </div>
