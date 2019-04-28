@@ -204,7 +204,8 @@ body {
 
 .tm-button-new,
 .tm-button-new:focus {
-    font-family: "Apple Chancery", cursive;
+    /*font-family: "Apple Chancery", cursive;*/
+    font-family: 'Gill Sans', sans-serif;
 	background-color: #deeefb;
 	border: none;
 	border-radius: 0;
@@ -223,7 +224,8 @@ body {
 
 .tm-section-title {
 	color: #0d3298;
-    font-family: "Apple Chancery", cursive;
+    /*font-family: "Apple Chancery", cursive;*/
+    font-family: 'Gill Sans', sans-serif;
     text-shadow: 2px 2px #fff;
 	font-weight: 1000;
 	margin-top: 0;
