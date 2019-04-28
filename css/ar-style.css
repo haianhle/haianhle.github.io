@@ -273,6 +273,7 @@ body {
 .tm-banner-title { 
 	color: #0d3298;
     text-shadow: 3px 3px #fff;
+    font-family: 'Gill Sans', sans-serif;
 	/*text-transform: lowercase;*/
     text-align: right;
 }
