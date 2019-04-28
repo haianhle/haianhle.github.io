@@ -61,9 +61,74 @@
             <div class="tm-main-content">
                 <div class="tm-content-box tm-content-box-home">                        
                     <h2>Convolutional Neural Networks (CNNs)</h2>
+                    </br>
+                    </br>
                     <p align="justify">
-                    .....
+                    The motivation arises from the fact that a fully connected network grows quickly
+                    with the size of an image, which consequently requires an enormous dataset 
+                    to avoid overfitting (besides the prohibitive computational cost).
+                    </br>
+                    Convolutional neural networks (CNNs), as the name implies, has to do with the convolution 
+                    between a kernel and an image in each convolutional layer. 
+                    A kernel or a filter refers to a small matrix, and the
+                    convolution operator (denoted as \(*\), sometimes called cross-correlation) gives rise 
+                    to a new image where each element is a weighted combination of the entries of a
+                    patch of the original image, with weights given by the filter.
                     </p>
+                    </br>
+                    <h4>Edge detection</h4>
+                    Edge detection is an example of the usefulness of the convolution operation in
+                    identifying the regions in an image where there is a sharp change in colors or intesntiy.
+                    <p align="justify">
+                    </p>
+                    <center><img src="edge-detection-vertical.pdf" width="100%"></img></center>
+                    <p align="center">An example of vertical edge detection</p>
+                    </br>
+                    <p align="justify">
+                    For example, in the figure above, applying the convolution operator between
+                    the \(3\times 3\) filter (center) and the blue region of the original image (left) gives rise to
+                    the element in the new image in blue box (right), whose value can be calculated as 
+                    the sum of the resulting element-wise product between the 2 matrices:
+                    $$ 0 = 10\times 1 + 10\times 0 + 10\times (-1) + 10\times 1 + 10\times 0 + 10\times (-1)\\
+                         + 10\times 1 + 10\times 0 + 10\times (-1)$$
+                    </br>
+                    This is an example of a vertical edge detector because it can detect the sharp edge in
+                    the middle of the original image, shown by the brighter region in the center of the
+                    resulting image.
+                    </p>
+                    </br>
+                    <center><img src="edge-detection-horizontal.pdf" width="100%"></img></center>
+                    <p align="center">An example of horizontal edge detection</p>
+                    </br>
+                    <p align="justify">
+                    Another example is shown above with a horizontal edge detector with a slightly more complicated
+                    image. The non-zero band in the middle reveals the horizontal edge in the center of the original
+                    image but also discovers the change from bright to dark (left side) and dark to bright (right side).
+                    </p>
+                    </br>
+                    <p align="justify">
+                    Examples of other commonly used filters are shown below. However, instead of hand-picking
+                    which filter to use for each task, the parameters associated with the filter from its size
+                    to the values of its matrix elements can be trained by a neural network.
+                    </p>
+                    <center><img src="filters.pdf" width="60%" class="center"></img></center>
+                    </br>
+                    <h4>Padding</h4>
+                    <p align="justify">
+                    If the original image is of size \(n\times n\) and the filter is of size \(f\times f\), the
+                    size of the resulting image is \( (n–f+1)\times (n–f+1)\). As a result, the input image size is
+                    going to shrink after each convolutional layer.
+                    In addition, because the edge of the 
+                    original image is not used in the convolution operation as often as the central pixels,
+                    some valuable information is potential lost in the process.
+                    </br>
+                    The solution to these problems is through padding the border of the original image with a
+                    \(p\) extra layers of zeros. When \(p=0\), that is, no padding, this is called "valid" convolution.
+                    When \(p = (f–1)/2\) so that the sizes of the input and output images are the same, this is called
+                    "same" convolution.
+                    </p>
+                    <center><img src="padding.pdf" width="100%" class="center"></img></center>
+                    </br>
                     <i>(to be continued)</i>
                 </div>
             </div>
