@@ -153,19 +153,19 @@
                     </br>
                     <p align="justify">
                     The model was trained using stochastic gradient descent with momentum on 
-                    mini-batches size 128 examples. The values for momentum used was 0.9 and
+                    mini-batches size 128 examples. The values for momentum parameter used was 0.9 and
                     a weight decay of 0.0005.
                     $$ v_{i+1} := 0.9v_i - 0.0005\times\epsilon\times w_i
                                          - \epsilon\times\langle\frac{\partial L}{\partial w}|_{w_i}\rangle_{D_i}$$
                     $$ w_{i+1} := w_i + v_{i+1}$$
-                    where \(i\) is the iteration index, \(v\) is the momentum variable,
+                    where \(i\) is the iteration index, \(v\) is the momentum variable (velocity),
                     \(\epsilon\) is the learning rate, which is the same for all layers and was
                     adjusted manually throughout training based on how the validation error improved,
                     starting at 0.01.
                     The weights \(w\) were initialized from a zero-mean Gaussian distribution
                     with standard deviation 0.01.
                     \(\langle\frac{\partial L}{\partial w}|_{w_i}\rangle_{D_i}\) is the
-                    average over the \(i\)th batch \(D_i\) of the derivative of the objective
+                    average over the \(i\)th batch \(D_i\) of the derivative of the loss function
                     with respect to \(w\) evaluated at \(w_i\).
                     The biases were initialized to 1 in the 2nd, 4th, and 5th convolutional layers as well
                     as the fully connected layers in order to accelerate the early stages
