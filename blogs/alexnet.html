@@ -93,12 +93,10 @@
                     <p align="justify">
                     The images from the dataset are resized to be \(256 \times 256\), non-squared images are cropped first.
                     The RGB values for each pixels are normalized using the mean of the training set.
-                    </br>
-                    </br>
-                    The architechture of the model is shown below (the figure is taken from the original paper, but I will make a
-                    prettier one when I have time). 
+                    The architechture of the model is shown below.
                     </p>
-                    <center><img src="alexnet-fig1.png" width="100%" class="center"></img></center> 
+                    </br>
+                    <center><img src="alexnet.png" width="100%" class="center"></img></center>
                     </br>
                     <p align="justify">
                     As mentioned previously, data augmentation was used to artificially enlarge the size
@@ -138,12 +136,6 @@
                         </li></p>
                         <li><p> 8th and also last layer is a 1000-way softmax.  </li></p>
                     </ul>
-                    <p align="justify">
-                    Andrew Ng had an easier diagram to follow than the original paper, as shown below.
-                    </p>
-                    </br>
-                    <center><img src="alexnet.png" width="100%" class="center"></img></center> 
-                    </br>
                     <p align="justify">
                     The activation shapes and sizes as well as the number of parameters for each layer
                     are tabulated below. The total number of parameters is calculated to be 62,369,155.
