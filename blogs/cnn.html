@@ -29,10 +29,6 @@
                 <h1 class="tm-banner-title"><a href="../index.html" style="text-decoration: None; color:#0d3298"> Anh H. Reynolds</a></h1>
             </div>                    
         </section>
-        <!--
-        <p align='center' style="font-size:200%;color:#0d3298">Data Science</p>
-        -->
-
 
         <div class="tm-body">
             <div class="tm-sidebar">
@@ -55,12 +51,12 @@
 
             </div>
 
-            <div class="tm-main-content tm-box-pad">
+            <div class="tm-main-content tm-box-pad" align="justify">
                 <div class="tm-content-box tm-content-box-home">                        
                     <h2>Convolutional Neural Networks (CNNs)</h2>
                     </br>
                     </br>
-                    <p align="justify">
+                    <p>
                     The motivation arises from the fact that a fully connected network grows quickly
                     with the size of an image, which consequently requires an enormous dataset 
                     to avoid overfitting (besides the prohibitive computational cost).
@@ -75,14 +71,14 @@
                     </p>
                     </br>
                     <h4>Edge detection</h4>
+                    <p>
                     Edge detection is an example of the usefulness of convolution in
                     identifying the regions in an image where there is a sharp change in colors or intesntiy.
-                    <p align="justify">
                     </p>
                     <center><img src="edge-detection-vertical.png" width="100%"></img></center>
                     <p align="center">An example of vertical edge detection</p>
                     </br>
-                    <p align="justify">
+                    <p>
                     For example, in the figure above, applying the convolution operator between
                     the \(3\times 3\) filter (center) and the blue region of the original image (left) gives rise to
                     the element in the new image in blue box (right), whose value can be calculated as 
@@ -98,13 +94,13 @@
                     <center><img src="edge-detection-horizontal.png" width="100%"></img></center>
                     <p align="center">An example of horizontal edge detection</p>
                     </br>
-                    <p align="justify">
+                    <p>
                     Another example is shown above with a horizontal edge detector with a slightly more complicated
                     image. The non-zero band in the middle reveals the horizontal edge in the center of the original
                     image but also discovers the change from bright to dark (left side) and dark to bright (right side).
                     </p>
                     </br>
-                    <p align="justify">
+                    <p>
                     Examples of other commonly used filters are shown below. However, instead of hand-picking
                     which filter to use for each task, the parameters associated with the filter from its size
                     to the values of its matrix elements can be trained by a neural network.
@@ -112,7 +108,7 @@
                     <center><img src="filters.png" width="60%" class="center"></img></center>
                     </br>
                     <h4>Padding</h4>
-                    <p align="justify">
+                    <p>
                     If the original image is of size \(n\times n\) and the filter is of size \(f\times f\), the
                     size of the resulting image is \( (n–f+1)\times (n–f+1)\). As a result, the input image size is
                     going to shrink after each convolutional layer.
@@ -131,23 +127,23 @@
                     <p align="center">An example of same convolution with padding \(p=1\)</p>
                     <h4>Convolutional layer</h4>
                     <ul>
-                    <li><p align="justify">the convolution operator can be applied to the original image with a stride
+                    <li><p>the convolution operator can be applied to the original image with a stride
                     \(s\) other than 1, resulting in fewer operations and output image of smaller size.
                     $$\left(\frac{n+2p–f}{s}+1\right)\times \left(\frac{n+2p–f}{s}+1\right)$$
                     </p></li>
-                    <li><p align="justify">the numbers of channels must be the same for the input image and the filter.
+                    <li><p>the numbers of channels must be the same for the input image and the filter.
                     See example below for an image with 3 channels (RGB) of dimensions \(6\times 6\times 3\).
                     The filter has dimensions \(3\times 3\times 3\), where the last \(3\) is the number
                     of channels. The resulting image has dimension \(4\times 4\), 
                     assuming \(s=1\) and \(p=0\).</p></li>
                     <center><img src="3D-conv.png" width="70%" class="center"></img></center>
-                    <li><p align="justify">multiple filters can be applied to each image. Given an input image of dimensions
+                    <li><p>multiple filters can be applied to each image. Given an input image of dimensions
                     \(n\times n\times n_C\) and \(n_C'\) filters of dimensions \(f\times f\times n_C\)
                     with stride \(s\) and padding \(p\),
                     the dimensions of the resulting output is
                     $$\left(\frac{n+2p–f}{s}+1\right)\times \left(\frac{n+2p–f}{s}+1\right)\times n_C'$$
                     </p></li>
-                    <li><p align="justify">the number of parameters to be learned in each convolutional layer is
+                    <li><p>the number of parameters to be learned in each convolutional layer is
                     \((f\times f\times n_C'+1)\times n_C\), which is independent of the size of the input image.
                     This helps solve the two problems mentioned at the very beginning of this post.
                     Note that \(f, n_C, n_C', p, s\) are all hyperparameters and are not trained in the network,
@@ -156,7 +152,7 @@
                     </ul>
                     </br>
                     <h5>Notation</h5>
-                    <p align="justify">
+                    <p>
                     For layer \(l\), the filter size, padding, stride are denoted
                     as \(f^{[l]}, p^{[l]}, s^{[l]}\) respectively.
                     </br>
@@ -186,7 +182,7 @@
                     </p>
                     </br>
                     <h4>Pooling layer</h4>
-                    <p align="justify">
+                    <p>
                     The motivation behind pooling layers is to reduce the size of the representation,
                     keeping only the more important features. Pooling layers have been found to work very
                     well, but the underlying reasons for that are not fully understood. 
@@ -196,7 +192,7 @@
                     </p>
                     <center><img src="max-pooling.png" width="50%" class="center"></img></center>
                     </br>
-                    <p align="justify">
+                    <p>
                     Pooling is applied very similarly to the convolution operator by sliding 
                     a small matrix of size \(f\times f\) across the input image with stride \(s\).
                     There is almost always no padding, \(p=0\). The Max Pooling operation involves
@@ -211,7 +207,7 @@
                     </p>
                     </br>
                     <h4>Example of a ConvNet</h4>
-                    <p align="justify">
+                    <p>
                     This simple network that is very similar to <a href="http://yann.lecun.com/exdb/lenet/">
                     LeNet-5</a> is an example given by Andrew Ng
                     in Course 4 of the <a href="https://www.coursera.org/specializations/deep-learning#courses">
@@ -223,7 +219,7 @@
                     </br>
                     <center><img src="lenet-5.png" width="100%" class="center"></img></center> 
                     </br>
-                    <p align="justify">
+                    <p>
                     Generally, we can see that \(n_H, n_W\downarrow\) while \(n_C\uparrow\).
                     The size of the activations should gradually decrease.
                     Most of the parameters to be learned in a ConvNet are in the last few fully connected
@@ -232,7 +228,7 @@
                     </br>
                     <center><img src="lenet-5-parameters.png" width="80%" class="center"></img></center> 
                     </br>
-                    <p align="justify">
+                    <p>
                     The original LeNet-5 was on grey scale images, so the dimensions of the original
                     input image is \(32\times 32\times 1\).
                     In addition, \(tanh\) and \(sigmoid\) activation functions were preferred to ReLU
@@ -242,11 +238,11 @@
                     <h4>Why ConvNet?</h4>
                     2 main advantages of using a ConvNet in computer vision applications are
                     <ul>
-                    <li><p align="justify">parameter sharing: a feature detector such as vertical
+                    <li><p>parameter sharing: a feature detector such as vertical
                     edge detector that is useful in one part of the image is probably be useful in
                     another part of the image. This is often true for both low level features
                     and high level features.</p></li>
-                    <li><p align="justify">sparsity of connection: the output unit depends only on a small
+                    <li><p>sparsity of connection: the output unit depends only on a small
                     number of input units. As a result, a ConvNet is more robust and less prone
                     to overfitting. </p></li>
                     </ul>

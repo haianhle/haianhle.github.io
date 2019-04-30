@@ -29,10 +29,6 @@
                 <h1 class="tm-banner-title"><a href="../index.html" style="text-decoration: None; color:#0d3298"> Anh H. Reynolds</a></h1>
             </div>                    
         </section>
-        <!--
-        <p align='center' style="font-size:200%;color:#0d3298">Data Science</p>
-        -->
-
 
         <div class="tm-body">
             <div class="tm-sidebar">
@@ -55,10 +51,10 @@
 
             </div>
 
-            <div class="tm-main-content tm-box-pad">
+            <div class="tm-main-content tm-box-pad" align="justify">
                 <div class="tm-content-box tm-content-box-home">                        
                     <h2>Large-scale image recognition: AlexNet</h2>
-                    <p align="justify">
+                    <p>
                     Source:
                     <a href=http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networ> original paper</a>
                     by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton (2012)
@@ -87,7 +83,7 @@
                     </p>
                     </br>
                     <h4> The model</h4>
-                    <p align="justify">
+                    <p>
                     The images from the dataset are resized to be \(256 \times 256\), non-squared images are cropped first.
                     The RGB values for each pixels are normalized using the mean of the training set.
                     The architechture of the model is shown below.
@@ -95,14 +91,14 @@
                     </br>
                     <center><img src="alexnet.png" width="100%" class="center"></img></center>
                     </br>
-                    <p align="justify">
+                    <p>
                     As mentioned previously, data augmentation was used to artificially enlarge the size
                     of the data set. One form of data augmentation used in the model was done by extracting
                     random \(224\times 224\times 3\) patches from the \(256\times 256\) images. 
                     These patches then go through 5 convolutional layers and 3 fully connected layers.
                     Notice that there is likely a mistake here in the paper and the patches' dimensions 
                     should be \(227\times 227\times 3\), as pointed out by Andrew Ng and others.
-                    <ul align="justify">
+                    <ul>
                         <li><p>1st convolutional layer: 96 kernels
                         of size \(11\times 11\times 3\) and a stride of 4 pixels, followed by
                         a max pooling layer of size \(3\times 3\) and a stride of 2.
@@ -133,14 +129,14 @@
                         </li></p>
                         <li><p> 8th and also last layer is a 1000-way softmax.  </li></p>
                     </ul>
-                    <p align="justify">
+                    <p>
                     The activation shapes and sizes as well as the number of parameters for each layer
                     are tabulated below. The total number of parameters is calculated to be 62,369,155.
                     </p>
                     </br>
                     <center><img src="alexnet-parameters.png" width="75%" class="center"></img></center> 
                     </br>
-                    <p align="justify">
+                    <p>
                     The model was trained using stochastic gradient descent with momentum on 
                     mini-batches size 128 examples. The values for momentum parameter used was 0.9 and
                     a weight decay of 0.0005.

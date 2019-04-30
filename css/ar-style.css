@@ -177,9 +177,8 @@ body {
 
 .tm-button,
 .tm-button:focus {
-    /*font-family: "Apple Chancery", cursive;*/
-    font-family: 'Gill Sans', sans-serif;
-	font-size: 21px;
+    font-family: 'Verdana', sans-serif;
+	font-size: 18px;
 	background-color: #fff;
 	border: none;
 	border-radius: 0;

@@ -29,10 +29,6 @@
                 <h1 class="tm-banner-title"><a href="../index.html" style="text-decoration: None; color:#0d3298"> Anh H. Reynolds</a></h1>
             </div>                    
         </section>
-        <!--
-        <p align='center' style="font-size:200%;color:#0d3298">Data Science</p>
-        -->
-
 
         <div class="tm-body">
             <div class="tm-sidebar">
@@ -55,10 +51,10 @@
 
             </div>
 
-            <div class="tm-main-content tm-box-pad">
+            <div class="tm-main-content tm-box-pad" align="justify">
                 <div class="tm-content-box tm-content-box-home">                        
                     <h2>Large-scale image recognition: VGG</h2>
-                    <p align="justify">
+                    <p>
                     Source: <a href=https://arxiv.org/abs/1409.1556>original paper</a>.
                     by Karen Simonyan and Andrew Zisserman (2015)
                     </br>
@@ -94,14 +90,14 @@
                     </font></figcaption>
                     </figure></center>
                     </br>
-                    <p align="justify">
+                    <p>
                     The activation shapes and sizes as well as the number of parameters for each layer
                     are tabulated below. The total number of parameters is calculated to be 138,348,355.
                     This is considered a very large net work even for current standard.
                     </p>
                     <center><img src="vgg-parameters.png" width="80%" class="center"></img></center> 
                     </br>
-                    <p align="justify">
+                    <p>
                     It appears to be standard practice as for this model the input images were also 
                     \(224\times 224\times 3\), which was obtained by randomly cropping the rescaled
                     training images. Data augmentation was done as described by
@@ -115,7 +111,7 @@
                     performance improvement on the ILSVRC dataset. This is consistent with what Andrew Ng
                     mentioned in his course on CNNs.
                     </p>
-                    <p align="justify">
+                    <p>
                     Another interesting point from the paper is how the use of a stack of conv layers
                     with small size filters (without pooling in between) is more advantageous to
                     one conv layer with large size filters. In other words, the authors are in favor
@@ -127,7 +123,7 @@
                     is added more often (after every layer), and second, the number of parameters
                     is much smaller resulting in a regularization effect.
                     </p>
-                    <p align="justify">
+                    <p>
                     Gradient descent with momentum was also used in training this model with a typical
                     value for the momentum parameter 0.9, weight decay 0.0005. Dropout regularization was used for
                     the first two fully connected layers with dropout ratio set to 0.5. The learning rate
@@ -136,7 +132,7 @@
                     The network was trained over 370K iterations (74 epochs).
                     The mini-batch size was 256.
                     </p>
-                    <p align="justify">
+                    <p>
                     Detailed results on the ILSVRC datasets can be found on the paper. The network showed
                     very impressive performance, outperforming many models including  GoogLeNet.
                     </p>
