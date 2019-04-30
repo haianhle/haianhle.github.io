@@ -102,7 +102,7 @@ body {
 .tm-paleblue-bg{ background-color: #fff; border: 3px solid #b9e1ff; }
 .tm-blue-text { color: #3C89D6; }
 .tm-red-text { color: #D66363; }
-.tm-box-pad { padding: 45px 40px; }
+.tm-box-pad { padding: 30px 30px; }
 .tm-bordered-box { border: 3px solid #b9e1ff; }
 .tm-no-border-top { border-top: none; }
 .tm-flex { display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex; }
@@ -559,7 +559,7 @@ figure.effect-bubba:hover p {
 		        flex-flow: row;
 	}
 
-	.tm-box-pad { padding: 45px 40px; }
+	.tm-box-pad { padding: 30px 30px; }
     .tm-services-img { margin: 0 auto; max-width: 250px; min-width: 50px; width: 100%; height: auto;}
 	.tm-services { overflow: auto; }
 	.tm-services-img-container { float: left; margin-left: 10px; margin-top: 50px; margin-bottom: 50px;}
@@ -625,7 +625,7 @@ figure.effect-bubba:hover p {
 	.tm-welcome-box { max-width: 390px; }
 	.tm-welcome-text { padding: 30px; }
 	.tm-section-title { margin-bottom: 20px; }
-	.tm-box-pad { padding: 45px; }
+	.tm-box-pad { padding: 30px; }
 	.tm-welcome-boxes-container { width: 780px; } /* Need to hard code width for IE */
 
 	.grid figure { 
