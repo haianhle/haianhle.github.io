@@ -352,7 +352,7 @@ body {
 
 .tm-flex > div { flex: 1 1 auto; }
 .tm-box-pad { padding: 35px 20px; }
-.tm-services-img { margin: 0 auto; }
+.tm-services-img { margin: 0 auto; max-width: 250px; min-width: 50px; width: 100%; height: auto;}
 
 /*---------------*/
 /*http://tympanus.net/codrops/2014/06/19/ideas-for-subtle-hover-effects/*/
@@ -541,7 +541,7 @@ figure.effect-bubba:hover p {
 
 	.tm-welcome-box { 
 		max-width: 400px;
-		width: 49%;
+		width: 50%;
 	}
 
 	.tm-section-title { margin-bottom: 30px; }
@@ -560,7 +560,7 @@ figure.effect-bubba:hover p {
 	}
 
 	.tm-box-pad { padding: 45px 40px; }
-	.tm-services-img { width: 300px; }	
+    .tm-services-img { margin: 0 auto; max-width: 250px; min-width: 50px; width: 100%; height: auto;}
 	.tm-services { overflow: auto; }
 	.tm-services-img-container { float: left; margin-left: 10px; margin-top: 50px; margin-bottom: 50px;}
 	.tm-services-description-container { margin-left: 300px; }
