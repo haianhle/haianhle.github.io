@@ -60,10 +60,12 @@
 
             </div>
 
-            <div class="tm-main-content tm-box-pad" align="justify">
+            <div class="tm-main-content tm-box-pad">
                 <div class="tm-content-box tm-content-box-home">                        
                     <h2>Large-scale image recognition: VGG</h2>
-                    <p>
+                    </br>
+                    </br>
+                    
                     Source: <a href=https://arxiv.org/abs/1409.1556>original paper</a>.
                     by Karen Simonyan and Andrew Zisserman (2015)
                     </br>
@@ -77,6 +79,8 @@
                     classification and localization tasks.
                     The network consists of a stack of convolutional layers followed by three fully connected (FC)
                     layers with a final 1000-way softmax.
+                    </br>
+                    </br>
                     Compared to AlexNet in the
                     <a href="alexnet.html">previous post</a>, this network is deeper but
                     has a simpler architechture as illustrated below. 
@@ -89,24 +93,25 @@
                     the number of filters goes up by a factor of 2.
                     The simplicity and uniformity in construction are among the nice
                     features of the network.
-                    </p>
+                    
                     <center><figure>
                     <img src="vgg.png" width="100%" class="center"></img>
                     <figcaption><font size="3">
+                    </br>
                     Architechture of the VGG-16 ConvNet. All the convolutional
                     layers use same convolution \(3\times 3\) filters with stride \(s=1\). All pooling
                     layers use \(2\times 2\) max pooling with stride 2 \((f=2, s=2)\).
                     </font></figcaption>
                     </figure></center>
                     </br>
-                    <p>
+                    
                     The activation shapes and sizes as well as the number of parameters for each layer
                     are tabulated below. The total number of parameters is calculated to be 138,348,355.
                     This is considered a very large net work even for current standard.
-                    </p>
+                    
                     <center><img src="vgg-parameters.png" width="80%" class="center"></img></center> 
                     </br>
-                    <p>
+                    
                     It appears to be standard practice as for this model the input images were also 
                     \(224\times 224\times 3\), which was obtained by randomly cropping the rescaled
                     training images. Data augmentation was done as described by
@@ -119,8 +124,10 @@
                     by Alex Krizhevsky et al. in the AlexNet paper does not result in 
                     performance improvement on the ILSVRC dataset. This is consistent with what Andrew Ng
                     mentioned in his course on CNNs.
-                    </p>
-                    <p>
+                    
+                    </br>
+                    </br>
+                    
                     Another interesting point from the paper is how the use of a stack of conv layers
                     with small size filters (without pooling in between) is more advantageous to
                     one conv layer with large size filters. In other words, the authors are in favor
@@ -131,8 +138,10 @@
                     conv layer. However, by having a stack of smaller conv layers, first, non-linearity
                     is added more often (after every layer), and second, the number of parameters
                     is much smaller resulting in a regularization effect.
-                    </p>
-                    <p>
+                    
+                    </br>
+                    </br>
+                    
                     Gradient descent with momentum was also used in training this model with a typical
                     value for the momentum parameter 0.9, weight decay 0.0005. Dropout regularization was used for
                     the first two fully connected layers with dropout ratio set to 0.5. The learning rate
@@ -140,17 +149,19 @@
                     set accuracy stopped improving, which is the same procedure used in the AlexNet paper.
                     The network was trained over 370K iterations (74 epochs).
                     The mini-batch size was 256.
-                    </p>
-                    <p>
+                    
+                    </br>
+                    </br>
+                    
                     Detailed results on the ILSVRC datasets can be found on the paper. The network showed
                     very impressive performance, outperforming many models including  GoogLeNet.
-                    </p>
+                    
                 </div>
             </div>
         </div>
 
         <footer class="tm-footer">
-            <p class="text-xs-center">Copyright &copy; 2019 Anh H. Reynolds</p>
+            <p class="text-xs-center">Copyright &copy; 2019 Anh H. Reynolds </p>
         </footer>
 
     </div>

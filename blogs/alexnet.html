@@ -60,10 +60,12 @@
 
             </div>
 
-            <div class="tm-main-content tm-box-pad" align="justify">
+            <div class="tm-main-content tm-box-pad">
                 <div class="tm-content-box tm-content-box-home">                        
                     <h2>Large-scale image recognition: AlexNet</h2>
-                    <p>
+                    </br>
+                    </br>
+                    
                     Source:
                     <a href=http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networ> original paper</a>
                     by Alex Krizhevsky, Ilya Sutskever, and Geoffrey Hinton (2012)
@@ -89,63 +91,66 @@
 
                     The paper reported results, including top-1 and top-5 error rates, on the ILSVRC-2010 
                     and ILSVRC-2012 dataset.
-                    </p>
+                    </br>
+                    
                     </br>
                     <h4> The model</h4>
-                    <p>
+                    
                     The images from the dataset are resized to be \(256 \times 256\), non-squared images are cropped first.
                     The RGB values for each pixels are normalized using the mean of the training set.
                     The architechture of the model is shown below.
-                    </p>
+                    
                     </br>
                     <center><img src="alexnet.png" width="100%" class="center"></img></center>
                     </br>
-                    <p>
+                    
                     As mentioned previously, data augmentation was used to artificially enlarge the size
                     of the data set. One form of data augmentation used in the model was done by extracting
                     random \(224\times 224\times 3\) patches from the \(256\times 256\) images. 
                     These patches then go through 5 convolutional layers and 3 fully connected layers.
                     Notice that there is likely a mistake here in the paper and the patches' dimensions 
                     should be \(227\times 227\times 3\), as pointed out by Andrew Ng and others.
+                    </br>
+                    </br>
                     <ul>
-                        <li><p>1st convolutional layer: 96 kernels
+                        <li>1st convolutional layer: 96 kernels
                         of size \(11\times 11\times 3\) and a stride of 4 pixels, followed by
                         a max pooling layer of size \(3\times 3\) and a stride of 2.
                         Dimensions of the output are \(55\times 55\times 96\) after Conv 1,
                         and \(27\times 27\times 96\) after Pool 1.
-                        </li></p>
-                        <li><p>2nd convolutional layer: same convolution with 256 kernels of size 
+                        </li>
+                        <li>2nd convolutional layer: same convolution with 256 kernels of size 
                         \(5\times 5\times 96\) and a stride of 1, followed by a max pooling layer
                         of size \(3\times 3\) and a stride of 2.
                         Dimensions of the output are \(27\times 27\times 256\) after Conv 2 (\(p=2)\),
                         and \(13\times 13\times 256\) after Pool 2.
-                        </li></p>
-                        <li><p>3rd convolutional layer: same convolution with 384 kernels of size 
+                        </li>
+                        <li>3rd convolutional layer: same convolution with 384 kernels of size 
                         \(3\times 3\times 256\), and  a stride of 1, no pooling.
                         Dimensions of the output are \(13\times 13\times 384\) after Conv 3 (\(p=1)\).
-                        </li></p>
-                        <li><p>4th convolutional layer: same convolution again with 384 kernels 
+                        </li>
+                        <li>4th convolutional layer: same convolution again with 384 kernels 
                         of size \(3\times 3\times 384\), and a stride of 1, no pooling.
                         Dimensions of the output are \(13\times 13\times 384\) after Conv 4 (\(p=1)\).
-                        </li></p>
-                        <li><p>5th convolutional layer: same convolution again with 256 kernels 
+                        </li>
+                        <li>5th convolutional layer: same convolution again with 256 kernels 
                         of size \(3\times 3\times 384\) and a stride of 1, followed by
                         a max pooling layer of size \(3\times 3\) and a stride of 2.
                         Dimensions of the output are \(13\times 13\times 256\) after Conv 5 (\(p=1)\),
                         and \(6\times 6\times 256\) after Pool 5.
-                        </li></p>
-                        <li><p> 6th and 7th layers are fully connected layers, each has 4096 neurons
-                        </li></p>
-                        <li><p> 8th and also last layer is a 1000-way softmax.  </li></p>
+                        </li>
+                        <li> 6th and 7th layers are fully connected layers, each has 4096 neurons
+                        </li>
+                        <li> 8th and also last layer is a 1000-way softmax.  </li>
                     </ul>
-                    <p>
+                    
                     The activation shapes and sizes as well as the number of parameters for each layer
                     are tabulated below. The total number of parameters is calculated to be 62,369,155.
-                    </p>
+                    
                     </br>
                     <center><img src="alexnet-parameters.png" width="75%" class="center"></img></center> 
                     </br>
-                    <p>
+                    
                     The model was trained using stochastic gradient descent with momentum on 
                     mini-batches size 128 examples. The values for momentum parameter used was 0.9 and
                     a weight decay of 0.0005.
@@ -165,13 +170,13 @@
                     as the fully connected layers in order to accelerate the early stages
                     of learning by providing the ReLUs with positive inputs. 
                     The biases in other layers were initialized to 0.
-                    </p>
+                    
                 </div>
             </div>
         </div>
 
         <footer class="tm-footer">
-            <p class="text-xs-center">Copyright &copy; 2019 Anh H. Reynolds</p>
+            <p class="text-xs-center">Copyright &copy; 2019 Anh H. Reynolds </p>
         </footer>
 
     </div>
