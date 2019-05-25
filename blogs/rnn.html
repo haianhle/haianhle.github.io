@@ -82,36 +82,56 @@
                     problems in which inputs and outputs cannot be encoded with vectors of fixed dimensionality.
                     The lengths of sequence data in speech recognition, machine translation, or question answering,
                     for example, are not known <i>a priori</i>.
-                    <i>"Where are you going?"</i> in English (4 words) is translated as <i>"Où est-ce que vous allez?"</i> in French (5 words),
-                    and <i>"Bạn đang đi đâu đấy?"</i> in Vietnamese (5 words).
+                    <i>"Where are you going"</i> in English (4 words) is translated as <i>"Où est-ce que vous allez"</i> (5 words),
+                    or <i>"Où allez-vous"</i> (3 words) in French,
+                    and <i>"Bạn đang đi đâu đấy"</i> in Vietnamese (5 words).
                     </br>
                     </br>
                     The solution to the problems mentioned above is to use a Recurrent Neural Network (RNN), which contains
                     a loop that allows inputs from the previous time steps to influence the output produced at the current time step. 
                     In other words, RNN uses the knowledge it receives in the past to make predictions about the future, what is coming next.
-                    An example of a simple RNN is shown below, where the lengths of the input and output sequences are the same.
+                    </br>
+                    </br>
+                    <center><figure>
+                    <img src="rnn.png" width="35%" class="center"></img>
+                    </figure></center>
+                    </br>
+                    An example of a simple unrolled RNN is shown below, where the lengths of the input sequence \(T_x\) and output sequence \(T_y\) are the same.
                     Each training example can contain a different number of "tokens" represented by a series of vectors at different
-                    time steps \(x^{\lt 1\gt}, x^{\lt 2\gt}, \dots, x^{\lt t\gt}\). For example, a sentence
-                    <i>"How are you"</i> can be represented using a series of 3 one-hot vectors, each represents a word (token) in the sentence,
+                    time steps \(\{x^{\lt t\gt}\}=x^{\lt 1\gt}, x^{\lt 2\gt}, \dots, x^{\lt T_x\gt}\). For example, a sentence
+                    <i>"Where are you going"</i> can be represented using a series of 4 one-hot vectors (\(T_x=4\)),
+                    each represents a word (token) in the sentence,
                     over a preset vocabulary.
                     </br>
                     </br>
                     <center><figure>
-                    <img src="rnn-uni.png" width="70%" class="center"></img>
+                    <img src="rnn-unrolled.png" width="70%" class="center"></img>
                     <figcaption><font size="3">
                     An example of a many-to-many unidirectional RNN where the lengths of the
                     input and output sequences are the same \(T_x = T_y\)</p>
                     </font></figcaption>
                     </figure></center>
                     </br>
+                    For one exampale, at each time step \(t\), the activation \(a^{\lt t\gt}\) can be computed using the
+                    input at that time step \(x^{\lt t\gt}\) and the activation from the previous time step \(a^{\lt t-1\gt}\).
+                    The activation function used for this is often \(tanh\) activation.
+                    </br>
+                    </br>
                     $$a^{\lt t\gt} = g(w_{aa}a^{\lt t-1\gt} + w_{ax}x^{\lt t\gt} + b_a)$$
                     $$\hat{y}^{\lt t\gt} = g'(w_{ya}a^{\lt t\gt}+b_y)$$
-                    where \(a^{\lt t\gt}, x^{\lt t\gt}, \hat{y}^{\lt t\gt}\) are the activation, input, and output
+                    </br>
+                    \(a^{\lt t\gt}, x^{\lt t\gt}, \hat{y}^{\lt t\gt}\) are the activation, input, and output
                     for one example at time step \(t\).
                     The initial activation \(a^{\lt 0\gt}\) is usually initialized to zeros.
                     Note how the weights are shared across different time steps. This idea of parameter sharing is
                     somewhat similar to that in convolutional neural networks.
                     </br>
+                    </br>
+                    The loss function can be computed for each time step, for example, for cross-entropy loss:
+                    $$\mathcal{L}^{\lt t\gt}(\hat{y}^{\lt t\gt}, y^{\lt t\gt})=-y^{\lt t\gt}\log\hat{y}^{\lt t\gt}-(1-y^{\lt t\gt})\log(1-\hat{y}^{\lt t\gt})$$
+                    </br>
+                    The loss function for one example is the sum of all the loss functions at each time step: 
+                    $$\mathcal{L}(\hat{y}, y)=\sum_t\mathcal{L}^{\lt t\gt}(\hat{y}^{\lt t\gt}, y^{\lt t\gt})$$
                     </br>
                     Other examples of unidirectional RNNs are shown below.
                     <center><figure>
