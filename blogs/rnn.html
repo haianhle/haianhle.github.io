@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139420331-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-139420331-1');
+    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>AR::RNNs</title>
+<!--
+-->
+    <!-- load stylesheets -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/ar-style.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+          <![endif]-->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <section id="welcome" class="tm-content-box tm-banner margin-b-10">
+            <div class="tm-banner-inner">
+                <h1 class="tm-banner-title"><a href="../index.html" style="text-decoration: None; color:#0d3298"> Anh H. Reynolds</a></h1>
+            </div>                    
+        </section>
+
+        <div class="tm-body">
+            <div class="tm-sidebar">
+                <nav class="tm-main-nav">
+                    <ul class="tm-main-nav-ul">
+                        <li class="tm-nav-item"><a href="../datascience.html" class="tm-nav-item-link tm-button">
+                            <i class="fa tm-nav-fa"></i>Data Science</a>
+                        </li>
+                        <li class="tm-nav-item"><a href="../404.html" class="tm-nav-item-link tm-button">
+                            <i class="fa tm-nav-fa"></i>Quantum Chemistry</a>
+                        </li>
+                        <li class="tm-nav-item"><a href="../cv.html" class="tm-nav-item-link tm-button">
+                            <i class="fa tm-nav-fa"></i>Curriculum Vitae</a>
+                        </li>
+                        <li class="tm-nav-item"><a href="../others.html" class="tm-nav-item-link tm-button">
+                            <i class="fa tm-nav-fa"></i>Other interests</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <div class="tm-main-content tm-box-pad">
+                <div class="tm-content-box tm-content-box-home">                        
+                    <h2>Recurrent Neural Networks and Language Modelling</h2>
+                    </br>
+                    </br>
+                    While an image or a photo can catch different people's eyes differently. Some are drawn
+                    to the centre, while some others are drawn to a corner. Some are drawn to the colors, some are
+                    drawn to the shapes, others are drawn to the details. However, very often, we observe the image, photo,
+                    or painting as a whole. When looking at a painting, we try our best to take in its entirety before
+                    arriving at any conclusion, although this process can sometimes take very little time. We do not know
+                    where the artist started first on his canvas, the process the painting was developed.
+                    However, music, video, and speech, for example, have a temporal dimension that make their data sequential. 
+                    Other examples of sequence data are DNA sequence and time series data.
+                    We process and store information in order. There is a before and after. As a result, traditional neural networks,
+                    despite its tremendous success in computer vision,
+                    cannot easily tackle problems related to sequence data. 
+                    </br>
+                    </br>
+                    In addition, simple deep neural networks cannot be easily applied to 
+                    problems in which inputs and outputs cannot be encoded with vectors of fixed dimensionality.
+                    The lengths of sequence data in speech recognition, machine translation, or question answering,
+                    for example, are not known <i>a priori</i>.
+                    <i>"Where are you going?"</i> in English (4 words) is translated as <i>"Où est-ce que vous allez?"</i> in French (5 words),
+                    and <i>"Bạn đang đi đâu đấy?"</i> in Vietnamese (5 words).
+                    </br>
+                    </br>
+                    The solution to the problems mentioned above is to use a Recurrent Neural Network (RNN), which contains
+                    a loop that allows inputs from the previous time steps to influence the output produced at the current time step. 
+                    In other words, RNN uses the knowledge it receives in the past to make predictions about the future, what is coming next.
+                    An example of a simple RNN is shown below, where the lengths of the input and output sequences are the same.
+                    Each training example can contain a different number of "tokens" represented by a series of vectors at different
+                    time steps \(x^{\lt 1\gt}, x^{\lt 2\gt}, \dots, x^{\lt t\gt}\). For example, a sentence
+                    <i>"How are you"</i> can be represented using a series of 3 one-hot vectors, each represents a word (token) in the sentence,
+                    over a preset vocabulary.
+                    </br>
+                    </br>
+                    <center><figure>
+                    <img src="rnn-uni.png" width="70%" class="center"></img>
+                    <figcaption><font size="3">
+                    An example of a many-to-many unidirectional RNN where the lengths of the
+                    input and output sequences are the same \(T_x = T_y\)</p>
+                    </font></figcaption>
+                    </figure></center>
+                    </br>
+                    $$a^{\lt t\gt} = g(w_{aa}a^{\lt t-1\gt} + w_{ax}x^{\lt t\gt} + b_a)$$
+                    $$\hat{y}^{\lt t\gt} = g'(w_{ya}a^{\lt t\gt}+b_y)$$
+                    where \(a^{\lt t\gt}, x^{\lt t\gt}, \hat{y}^{\lt t\gt}\) are the activation, input, and output
+                    for one example at time step \(t\).
+                    The initial activation \(a^{\lt 0\gt}\) is usually initialized to zeros.
+                    Note how the weights are shared across different time steps. This idea of parameter sharing is
+                    somewhat similar to that in convolutional neural networks.
+                    </br>
+                    </br>
+                    Other examples of unidirectional RNNs are shown below.
+                    <center><figure>
+                    <img src="rnn-many-to-one.png" width="70%" class="center"></img>
+                    <figcaption><font size="3">
+                            Many-to-one RNN, for example, in sentiment classification
+                    </font></figcaption>
+                    </figure></center>
+
+                    <center><figure>
+                    <img src="rnn-one-to-many.png" width="70%" class="center"></img>
+                    <figcaption><font size="3">
+                         One-to-many RNN, for example, in sequence generation
+                    </font></figcaption>
+                    </figure></center>
+
+                    <center><figure>
+                    <img src="rnn-many-to-many.png" width="70%" class="center"></img>
+                    <figcaption><font size="3">
+                         Many-to-many RNN, for example, in machine translation, where the lengths
+                         of the input and output sequences are different
+                    </font></figcaption>
+                    </figure></center>
+                    </br>
+                    </br>
+                    The last model shown above is an RNN Encoder-Decoder, and is very popular in sequence to sequence
+                    learning. Basically, two RNNs forming an encoder-decoder pair are used.
+                    The encoder extracts a fixed length vector representation
+                    from a variable-length source sequence of symbols, while the decoder generates from this
+                    fixed length representation a new variable-length target sequence of symbols.
+                    Examples of such network were proposed by Cho et al. 2014 and Sutskever et al. 2014.
+                    
+                    </br>
+                    </br>
+                    However, a basic RNN architecture runs into vanishing gradient problem in deep network
+                    and consequently cannot well capture long-range dependencies, or dependencies that span
+                    a long interval. Since the review by Bengio et al. in 2013, lots of progress has been made
+                    to address this problem. Some of these models will be discussed in future posts.
+                    </br>
+                    </br>
+
+                    <i>(to be continued)</i>
+                    <h4>References</h4>
+                    <ul>
+                        <li>Andrew Ng in Sequence Models, 5th course in the Deep Learning Specialization on Coursera.</li>
+                        <li>Bengio, Lewandowski, and Pascanu, "Advances in optimizing recurrent networks",
+                        In Proceedings of the 38th International Conference on Acoustics, Speech, and Signal Processing (ICASSP), 2013.</li>
+                        <li>Cho, van Merrienboer, Gulcehre, Bougares, Schwenk, and Bengio,
+                        "Learning phrase representations using RNN encoder-decoder for statistical machine translation.",
+                        in Proceedings of the Empiricial Methods in Natural Language Processing (EMNLP), 2014.
+                        <li>Sutskever, Vinyals, and Le, "Sequence to sequence learning with neural networks",
+                        in Advances in Neural Information Processing Systems (NIPS), 2014.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <footer class="tm-footer">
+            <p class="text-xs-center">Copyright &copy; 2019 Anh H. Reynolds</p>
+        </footer>
+
+    </div>
+
+    <!-- load JS files -->
+    
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script> 
+    <script src="../js/jquery.magnific-popup.min.js"></script>
+    <script src="../js/jquery.singlePageNav.min.js"></script>
+    <script src="../js/vendor/modernizr-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+    <script src="../js/plugins.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <!-- Templatemo scripts -->
+    <script>  
+
+    function setNavbar() {
+        if ($(document).scrollTop() > 160) {
+            $('.tm-sidebar').addClass('sticky');
+        } else {
+            $('.tm-sidebar').removeClass('sticky');
+        }
+    }                   
+
+    $(document).ready(function(){
+        
+        // Single page nav
+        $('.tm-main-nav').singlePageNav({
+            'currentClass' : "active",
+            offset : 20
+        });
+
+        // Detect window scroll and change navbar
+        setNavbar();
+        
+        $(window).scroll(function() {
+          setNavbar();
+        });
+
+        // Magnific pop up
+        $('.tm-gallery').magnificPopup({
+          delegate: 'a', // child items selector, by clicking on it popup will open
+          type: 'image',
+          gallery: {enabled:true}
+          // other options
+        });
+    });
+
+    </script>             
+
+</body>
+</html>
