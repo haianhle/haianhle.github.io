@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -21,7 +20,7 @@
 
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700%7cRoboto:400,400italic,700%7cRoboto&#43;Mono">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
   
   <script type="text/javascript">
   !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t,e){var n=document.createElement("script");n.type="text/javascript";n.async=!0;n.src="https://cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(n,a);analytics._loadOptions=e};analytics.SNIPPET_VERSION="4.1.0";
@@ -31,7 +30,7 @@
 </script>
     <script>
       window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', 'UA-139420331-1', 'auto');
+      ga('create', 'UA-126274462-1', 'auto');
       
       ga('require', 'eventTracker');
       ga('require', 'outboundLinkTracker');
@@ -76,7 +75,7 @@
         <span class="icon-bar"></span>
       </button>
       
-      <a class="navbar-brand" href="index.html">Anh H. Reynolds</a>
+      <a class="navbar-brand" href="../index.html">Anh H. Reynolds</a>
     </div>
 
     
@@ -84,7 +83,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
-          <a href="/#about" data-target="#about">
+          <a href="../index.html#about" data-target="#about">
             
             <span>Home</span>
             
@@ -92,7 +91,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/#blogs" data-target="#blogs">
+          <a href="../index.html#blogs" data-target="#blogs">
             
             <span>Blogs</span>
             
@@ -100,7 +99,7 @@
         </li>
 
         <li class="nav-item">
-          <a href="/#contact" data-target="#contact">
+          <a href="../index.html#contact" data-target="#contact">
             
             <span>Contact</span>
             
@@ -124,19 +123,19 @@
     <div id="profile">
 
       
-      <div class="portrait" style="background-image: url('img/anh.jpg');"></div>
-      <meta itemprop="image" content="img/anh.jpg">
+      <div class="portrait" style="background-image: url('../img/anh.jpg');"></div>
+      <meta itemprop="image" content="../img/anh.jpg">
       
 
       <div class="portrait-title">
         <h2 itemprop="name">Anh H. Reynolds</h2>
         <h3 itemprop="jobTitle">Physical/Analytical Chemist</h3>
         
-       <!--
-       <h3 itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
+        <!--
+        <h3 itemprop="worksFor" itemscope itemtype="http://schema.org/Organization">
           <span itemprop="name">Northwestern University</span>
         </h3>
-       -->
+        -->
       </div>
 
       <link itemprop="url" href="/">
@@ -177,242 +176,108 @@
     </div>
   </div>
   <div class="col-xs-12 col-md-8" itemprop="description">
-
     
-
-<h1 id="about-me">About Me</h1>
-<p>My name is Anh Reynolds. I'm a Theoretical Chemist turning Analytical Chemist based in Cambridge, Massachusetts, and originally from Hanoi, Vietnam. 
-  Although no longer writing codes and solving equations everyday, I still consider myself a theorist at heart. 
-  My mission as a scientist has been to generate practical insight by building mathematical models, running simulations, solving equations, and writing computer codes to facilitate all of the above.</p>
-<p>I have studied and conducted scientific research in Singapore, Canberra, Toulouse, and most recently Evanston, Illinois, where I earned my M.S. from Northwestern University. 
-  My graduate research was focused on making making quantum chemistry applicable to large-scale problems; 
-  I developed several new, scalable chemical physics models and implemented them in the open-source <a href="https://nubakery.org">BAGEL</a> package. 
-  I've always enjoyed working on making sense of the world at a molecular level and felt extrememly blessed for the opportunities academia gave me to travel and meet some amazing people. 
- Life took a turn, and never had I imagined I would have so much fun on this new journey, learning about separation science,
-then biochemical assays, and now proteomics. 
-  I hope to be able to combine my modelling skills, my desire to recognize patterns,
-and all that I'm learning about liquid chromatography and mass spectrometry to do something meaningful.</p>
-
-    <div class="row">
-      <div class="col-sm-4">
-        <h4>Interests</h4>
-        <ul class="ul-interests">
-          <li>Learning new things</li>
-          <li>Classical music</li>
-          <li>Books</li>
-          <li>Agatha Christie</li>
+<!-- ************************************ CONTENT ******************************-->
+<h1>Database-Dependent Searching</h1>
+   </br>
+   </br>
+   <i>working on this...</i>
+   </br>
+   </br>
+<ol>
+    <li>Choice of database</li>
+    <li>Search parameters</li>
+        <ul>
+        <li>Fragmentation mode (CID, ETD, etc.)</li>
+        <li>Cleavage method (enzymatic digestion, chemical cleavage)</li>
+            <ul>
+            <li>Trypsin cleaves after Arg and Lys if they’re not followed by a Pro</li>
+            <li>Specific cleavage, unspecific cleavage (e.g., protease contamination),
+                missed cleavage (e.g., charge residues in proximity)</li>
+            </ul>
+        <li>Modifications</li>
+            <ul>
+            <li>Fixed modifications: consistent change in mass of an amino acid</li>
+            <li>Variable modifications: phosphorylation, glycosylation, etc.</li>
+            </ul>
+        <li>Mass accuracy</li>
+            <ul>
+            <li>Monoisotopic or average mass</li>
+            <li>Average mass is useful for low-resolution instrument</li>
+            <li>Often specified in ppm or Da</li>
+            <li>Global calibration vs local calibration vs internal standard calibration</li>
+            </ul>
+        <li>Retention time alignment: potentially better accuracy as a second dimension besides m/z alignment</li>
         </ul>
-      </div>
-      
-      <div class="col-sm-7">
-        <h4>Education</h4>
-        <ul class="ul-edu fa-ul">
-          <li>
-            <i class="fa-li fa fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">MS in Theoretical Chemistry, 2018</p>
-              <p class="institution">Northwestern University, Evanston, IL</p>
-            </div>
-          </li>
-          
-          <li>
-            <i class="fa-li fa fa-graduation-cap"></i>
-            <div class="description">
-              <p class="course">BS in Chemistry (1st Class Honors), 2010</p>
-              <p class="institution">National University of Singapore, Singapore</p>
-            </div>
-          </li>
+    <li>Data storage and format</li>
+        <ul>
+        <li>Two data types contained within raw MS data sets:</li>
+            <ul>
+            <li><b>Numeric data</b>: m/z, peak intensities, and retention times</li>
+            <li><b>Metadata</b>: instrument and experiment settings</li>
+            </ul>
+        <li><b>mzML</b>: unified format built upon mzXML and mzData supported by the Proteomics Standards Initiative (PSI)</li>
+            <ul>
+            <li>Many fold larger file size than the original proprietary vendor format</li>
+            <li>Slower read and write speeds</li>
+            <li>Metadata accurately and unambiguously annotated using PSI-MS controlled vocabulary</li>
+            <li>Stored in text-based XML format</li>
+            <li>Numeric data get converted to text strings with Base64 encoding</li>
+            <li>zlib compression possible before encoding</li>
+            <li>Numpress: an encoding scheme to compress the binary numeric data before Base64 encoding</li>
+                <ul>
+                <li>Truncation of numbers and rounding to integers</li>
+                <li>File size reduction by 61%</li>
+                <li>Relatively constant relative error</li>
+                <li>Appropriate choice of threshold can minimize effect on downstream analysis</li>
+                </ul>
+            </ul>
+        <li><b>mz5</b>: data format based on HDF5 (hierarchical data format version 5)</li>
+            <ul>
+            <li>Binary format allowing complex data relationships and dependencies</li>
+            <li>50% size file reduction</li>
+            <li>Multiple data sets can be stored within a hierarchical group structure</li>
+            <li>Group has a container construct </li>
+            <li>Data sets are multidimensional arrays of data elements</li>
+            <li>Metadata stored as attributes (key-valued pairs)</li>
+            <li>Large data sets stored in chunks of variable sizes storable in cache for repeated access</li>
+            <li>Requires complete reimplementation of mzML where tags and numeric data have to be remapped to structures that mimic tables in a relational database</li>
+            </ul>
+        <li><b>mzDB</b>: lightweight SQLite relational database</li>
+            <ul>
+            <li>2-dimensional data blocks</li>
+            <li>25% file size reduction</li>
+            <li>mzDB-access and pwiz-mzDB for DDA and mzDB-Swath (for DIA.</li>
+            <li>Metadata are not compressed but stored in param_tree fields in XML format</li>
+            <li>Numeric data are also not compressed (can be compressed with SQLite)</li>
+            </ul>
+        <li><b>imzML</b>: similar to mzML for easier visualization of the data using third party softwares</li>
         </ul>
-      </div>
-      
+    <li>Data parsing</li>
+    <li>Search algorithms</li>
+        <ul>
+        <li>Peptide sequence tag by Mann et al. (1994)
+        <li>Cross-correlation function for comparing theoretical and observed spectra by Eng et al. (SEQUEST first paper 1994)
+        <li>Iterative search approach by Jensen et al. (1997) for peptide mass mapping to sequence databases
+        <li>Many MS databases exist but are commercial. How to validate the search results?
+            <ul>
+            <li>Log likelihood ratio
+            <li>Hidden Markov Models for scoring peptide sequence matches to observed MS/MS spectra (Ref 31 of 1)
+            <li>Receiver Operating Characteristics Plot
+            </ul>
+        </ul>
 
-    </div>
-  </div>
-</div>
+</ol>
 
-    </div>
-  </section>
-  
-
-<section id="blogs" class="home-section">
-<div class="container">
-<div class="row">
-  <div class="col-xs-12 col-md-4 section-heading">
-    <h1>Blogs</h1>
-  </div>
-
-<div class="col-xs-12 col-md-8">
-
-<!-- ************* BLOG ********************* -->
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="proteomics/database-search.html">Database-dependent Searching in Proteomics</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-  ...
-  </div>
-</div>
+<h2>References</h2>
+    <ol>
+    <li>Matthiesen, Methods, algorithms and tools in computational proteomics: A practical point of view (2007) DOI: 10.1002/pmic.200700116</li>
+    <li>Chen et al., Bioinformatics Methods for Mass Spectrometry-Based Proteomics Data Analysis (2010) doi: 10.3390/ijms21082873</li>
+    <li>Bhamber et al., mzMLb: A Future-Proof Raw Mass Spectrometry Data Format Based on Standards-Compliant mzML and Optimized for Speed and Storage Requirements, J. Proteome Res. 2021, 20, 172−183</li>
+    </ol>
 
 
-<!-- ************* BLOG ********************* -->
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="proteomics/challenges.html">Challenges in bottom-up proteomics</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-  ...
-  </div>
-</div>
-
-
-<!-- ************* BLOG ********************* -->
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="proteomics/intro-proteomics.html">Proteomics: An Overview</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-  ...
-  </div>
-</div>
-
-
-<!-- ************* BLOG ********************* -->
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="blogs/rnn.html">Recurrent Neural Networks and Language Modelling</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-     An image can catch different people's eyes differently. [...]
-  </div>
-</div>
-
-
-<!-- ************* BLOG ********************* -->
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="blogs/vgg.html">Large-scale image recognition: VGG</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-     VGG stands for Visual Geometry Group, a research group in the Department of Engineering Science at the University
-     of Oxford, [...]
-  </div>
-</div>
-
-
-
-
-<!-- ************* BLOG ********************* -->
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="blogs/alexnet.html">Large-scale image recognition: AlexNet</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-     AlexNet refers to an eight-layer convolutional neural network (CNN) that was the winner of the 
-     <a href=http://www.image-net.org/challenges/LSVRC/>ILSVRC</a>
-     [...]
-  </div>
-</div>
-
-
-
-
-<div class="pub-list-item card-simple" itemscope itemtype="http://schema.org/CreativeWork">
-  <h3 class="article-title" itemprop="name">
-    <div>
-    <a href="blogs/cnn.html">Convolutional Neural Networks (CNNs)</a>
-    </div>
-  </h3>
-
-  <div class="pub-abstract" itemprop="text">
-      The motivation arises from the fact that a fully connected network grows quickly
-      with the size of an image,
-      [...]
-  </div>
-</div>
-
-
-
-
-</div>
-</div>
-</section>
-  
-
-  
-  
-  
-  <section id="contact" class="home-section">
-    <div class="container">
-      
-
-
-
-
-<div class="row">
-  <div class="col-xs-12 col-md-4 section-heading">
-    <h1>Contact</h1>
-    
-  </div>
-  <div class="col-xs-12 col-md-8">
-    
-
-    <ul class="fa-ul" itemscope>
-
-      
-      <li>
-        <i class="fa-li fa fa-envelope fa-2x" aria-hidden="true"></i>
-        <span id="person-email" itemprop="email"><a href="mailto:anh.reynolds@gmail.com">anh.reynolds@gmail.com</a></span>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-      <li>
-        <i class="fa-li fa fa-map-marker fa-2x" aria-hidden="true"></i>
-        <span id="person-address" itemprop="address">Greater Boston, MA</span>
-      </li>
-      
-
-      
-
-    </ul>
-
-    
-
-  </div>
-</div>
-
-    </div>
-  </section>
-  
-
+<!-- ************************************ END OF CONTENT ******************************-->
 
 
 <footer class="site-footer">
@@ -422,7 +287,7 @@ and all that I'm learning about liquid chromatography and mass spectrometry to d
 
     <p class="powered-by">
 
-      &copy; 2022 &middot;
+      &copy; 2022 &middot; 
       Anh H. Reynolds 
       
 
@@ -467,6 +332,7 @@ and all that I'm learning about liquid chromatography and mass spectrometry to d
 
     <script src="js/hugo-academic.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 
   </body>
 </html>
